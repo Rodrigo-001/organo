@@ -1,13 +1,18 @@
 import Colaborador from '../Colaborador'
 import './time.css'
 
-const Time = ({ time, colaboradores }) => {
+// componente React "Time"  recebe  propriedades, como time, colaboradores e aoDeletar.
+const Time = ({ time, colaboradores, aoDeletar }) => {
     return (
 
         colaboradores.length > 0 && <section className='time' style={{ backgroundImage: 'url(/imagens/fundo.png)', backgroundColor: time.corPrimaria }}>
             <h3 style={{ borderColor: time.corSecundaria }}>{time.nome}</h3>
             <div className='colaboradores'>
-                {colaboradores.map((colaborador, indice) => <Colaborador key={indice} colaborador={colaborador} corDeFundo={time.corSecundaria} />)}
+
+                {/* percorrendo array de colaboradores e renderizando um componente "Colaborador" para cada elemento do array. */}
+                {colaboradores.map((colaborador, indice) => 
+                {   
+                    return <Colaborador key={indice} colaborador={colaborador} corDeFundo={time.corSecundaria} aoDeletar={aoDeletar} />})}
             </div>
         </section>
 

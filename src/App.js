@@ -193,6 +193,9 @@ function App() {
 
   const [colaboradores, setColaboradores] = useState(inicial)
 
+  function deletarColaborador() {
+    console.log('Deletando colaborador');
+  } //essa função será passada para o componente Time, que por sua vez passará para o componente Colaborador
 
   return (
     <div>
@@ -200,7 +203,15 @@ function App() {
       <Formulario times={times.map(time => time.nome)} aoCadastrar={colaborador => setColaboradores([...colaboradores, colaborador])} />
       <section className="times">
         <h1>Minha organização</h1>
-        {times.map((time, indice) => <Time key={indice} time={time} colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)} />)}
+        {times.map((time, indice) => 
+          <Time 
+            key={indice} 
+            time={time} 
+            colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)} 
+            // passando função deletarColaborador para o componente Time
+            aoDeletar={deletarColaborador}
+          />
+        )}
       </section>
       <Rodape />
     </div>
